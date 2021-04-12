@@ -30,6 +30,9 @@ namespace Mar2021
             tmObj.editTM(driver);
             tmObj.deleteTM(driver);
 
+            // close driver
+            driver.Close();
+
         }
         
     }
