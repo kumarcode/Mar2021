@@ -1,4 +1,6 @@
 ﻿using Mar2021.Pages;
+using Mar2021.Utilities;
+using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using System;
@@ -6,20 +8,20 @@ using System.Threading;
 
 namespace Mar2021
 {
-    class Program
+    [TestFixture]
+    [Parallelizable]
+    class Program : CommonDriver
     {
-        
-        static void Main(string[] args)
+        //static void Main(string[] args)
+        //{
+
+        //}
+
+
+
+        [Test]
+        public void CreateTMTest()
         {
-            Console.WriteLine("Hello World!");
-
-            // launch turnup portal 
-            IWebDriver driver = new ChromeDriver(@"S:\Mar2021\");
-
-            // page objects for login
-            LoginPage loginObj = new LoginPage();
-            loginObj.loginSteps(driver);
-
             // home page object
             HomePage homeObj = new HomePage();
             homeObj.navigateToTM(driver);
@@ -27,13 +29,33 @@ namespace Mar2021
             // tm page object
             TMPage tmObj = new TMPage();
             tmObj.createTM(driver);
-            tmObj.editTM(driver);
-            tmObj.deleteTM(driver);
-
-            // close driver
-            driver.Close();
 
         }
-        
+
+        [Test]
+        public void EditTMTest()
+        {
+            // home page object
+            HomePage homeObj = new HomePage();
+            homeObj.navigateToTM(driver);
+
+            // tm page object
+            TMPage tmObj = new TMPage();
+            tmObj.editTM(driver);
+        }
+
+        [Test]
+        public void DeleteTMTest()
+        {
+            // home page object
+            HomePage homeObj = new HomePage();
+            homeObj.navigateToTM(driver);
+
+            // tm page object
+            TMPage tmObj = new TMPage();
+            tmObj.deleteTM(driver);
+        }
+
+
     }
 }

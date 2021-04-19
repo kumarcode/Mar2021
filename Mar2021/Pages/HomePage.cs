@@ -17,5 +17,16 @@ namespace Mar2021.Pages
             // click tm
             driver.FindElement(By.XPath("/html/body/div[3]/div/div/ul/li[5]/ul/li[3]/a")).Click();
         }
+
+
+        public void navigateToCompanies(IWebDriver driver)
+        {
+            // click admin
+            driver.FindElement(By.XPath("/html/body/div[3]/div/div/ul/li[5]/a")).Click();
+            Thread.Sleep(500);
+
+            // click companies - to-do
+            
+        }
     }
 }
