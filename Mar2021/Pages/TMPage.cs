@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using NUnit.Framework;
+using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -52,17 +53,25 @@ namespace Mar2021.Pages
             driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[4]/a[4]")).Click();
             Thread.Sleep(500);
 
+            // record count
+            string recordCount = driver.FindElement(By.XPath("//*[@data-role='pager']/span[2]")).Text;
+
+
 
             // verify if the last row contains the record created
             IWebElement actualDescription = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[3]/table/tbody/tr[last()]/td[3]"));
 
+            // option 1
+            Assert.That(actualDescription.Text, Is.EqualTo("Mar2021"), "Test Failed");
+
+            // option 2
             if (actualDescription.Text == "Mar2021")
             {
-                Console.WriteLine("TM created, test passed");
+                Assert.Pass("TM created, test passed");
             }
             else
             {
-                Console.WriteLine("TM test failed");
+                Assert.Fail("TM test failed");
             }
         }
 
